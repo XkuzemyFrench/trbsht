@@ -45,7 +45,3 @@ jobs:
 
               docker build -t buildtools2017:latest -m 2GB
               docker run -it buildtools2017:latest
-              
-workflows:
-  jobs:
-    build
