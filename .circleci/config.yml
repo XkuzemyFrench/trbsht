@@ -19,7 +19,7 @@ jobs:
           shell: bash.exe
           command: |        
               (
-              cat \<<'END_HERDOC'
+              cat \<<END_HERDOC
               # escape=`
 
               # Use the latest Windows Server Core image with .NET Framework 4.8.
@@ -52,5 +52,5 @@ jobs:
           #shell: cmd.exe
           command: |
               cd C:\BuildTools
-              docker build -t buildtools2019:latest -m 2GB .
+              docker build -t buildtools2017:latest -m 2GB .
               docker run -it buildtools2017:latest
