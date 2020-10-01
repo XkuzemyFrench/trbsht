@@ -15,7 +15,6 @@ jobs:
           command: |
               mkdir C:\BuildTools
               cd C:\BuildTools
-              @echo off
               echo # escape=`> C:\BuildTools\Dockerfile
 
               echo # Use the latest Windows Server Core image with .NET Framework 4.8.>> C:\BuildTools\Dockerfile
