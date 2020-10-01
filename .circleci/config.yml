@@ -49,7 +49,8 @@ jobs:
               ) > C:\BuildTools\Dockerfile
 
       - run:
-          shell: cmd.exe
+          #shell: cmd.exe
           command: |
-              docker build --file="C:\BuildTools\Dockerfile" -t buildtools2019:latest -m 2GB 
+              cd C:\BuildTools
+              docker build -t buildtools2019:latest -m 2GB .
               docker run -it buildtools2017:latest
