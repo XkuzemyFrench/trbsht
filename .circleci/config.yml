@@ -15,7 +15,7 @@ jobs:
           command: |
               mkdir C:\BuildTools
               cd C:\BuildTools
-              cat \<<END_HEREDOC > C:\BuildTools\Dockerfile
+              tee C:\BuildTools\Dockerfile \<<END_HEREDOC
               # escape=`
 
               # Use the latest Windows Server Core image with .NET Framework 4.8.
