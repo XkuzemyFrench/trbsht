@@ -47,9 +47,10 @@ jobs:
               ENTRYPOINT ["C:\\BuildTools\\Common7\\Tools\\VsDevCmd.bat", "&&", "powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
               END_HERDOC
               ) > C:\BuildTools\Dockerfile
+              cat C:\BuildTools\Dockerfile
 
       - run:
           shell: cmd.exe
           command: |
-              docker build -t buildtools2017:latest -m 2GB
+              ddocker build -t buildtools2019:latest -m 2GB .
               docker run -it buildtools2017:latest
