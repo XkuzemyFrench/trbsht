@@ -51,5 +51,5 @@ jobs:
       - run:
           shell: cmd.exe
           command: |
-              docker build -t buildtools2019:latest -m 2GB -f C:\BuildTools\Dockerfile
+              docker build --file="C:\BuildTools\Dockerfile" -t buildtools2019:latest -m 2GB 
               docker run -it buildtools2017:latest
