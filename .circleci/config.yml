@@ -16,7 +16,7 @@ jobs:
               mkdir C:\BuildTools
               cd C:\BuildTools
               cat \<<END_HEREDOC > C:\BuildTools\Dockerfile
-# escape=`
+              # escape=`
 
 # Use the latest Windows Server Core image with .NET Framework 4.8.
 FROM mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019
@@ -42,6 +42,7 @@ RUN C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache `
 # This entry point starts the developer command prompt and launches the PowerShell shell.
 ENTRYPOINT ["C:\\BuildTools\\Common7\\Tools\\VsDevCmd.bat", "&&", "powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
 END_HEREDOC
+
 
               docker build -t buildtools2017:latest -m 2GB
               docker run -it buildtools2017:latest
