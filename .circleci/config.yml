@@ -20,5 +20,4 @@ jobs:
           #shell: cmd.exe
           command: |
               cd C:\BuildTools
-              winpty docker build -t buildtools2017:latest -m 2GB .
-              winpty docker run -it buildtools2017:latest
+              docker build -t buildtools2017:latest -m 2GB .
