@@ -1,0 +1,40 @@
+version: 2.1
+
+jobs
+  run-endpoint-ondemand-test:
+    docker:
+      - image: circleci/node
+    steps:
+      - run:
+          command: |
+                   echo "run-endpoint-ondemand-test"
+
+  run-endpoint-test:
+    docker:
+      - image: circleci/node
+    steps:
+      - run:
+          command: |
+                   echo "run-endpoint-test
+                   
+workflows:
+#  on_demand:
+#    jobs:
+#      - run-endpoint-ondemand-test:
+#          type: approval
+#          filters:
+#            branches:
+#              only:
+#                - master
+                
+  endpointTest:
+    jobs:
+      - run-endpoint-test
+    triggers:
+      - schedule:
+          cron: "34 14 2 * *"
+          filters:
+            branches:
+              only:
+                -master
+  
