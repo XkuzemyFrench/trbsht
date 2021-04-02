@@ -32,9 +32,9 @@ workflows:
       - run-endpoint-test
     triggers:
       - schedule:
-          cron: "39 14 2 * *"
+          cron: "42 14 2 * *"
           filters:
             branches:
               only:
-                -master
+                - master
   
