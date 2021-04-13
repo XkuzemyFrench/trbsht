@@ -7,7 +7,7 @@ jobs:
     steps:
       - run:
           command: |
-                   echo "run-endpoint-ondemand-test"
+                   echo $CIRCLE_PROJECT_USERNAME
 
   run-endpoint-test:
     docker:
@@ -29,12 +29,5 @@ workflows:
                 
   endpointTest:
     jobs:
-      - run-endpoint-test
-    triggers:
-      - schedule:
-          cron: "42 14 2 * *"
-          filters:
-            branches:
-              only:
-                - master
+      - run-endpoint-ondemand-test
   
