@@ -12,15 +12,15 @@ jobs:
       - run:
           name: Setting workspace path variable
           command: |
-              echo "export WORKSPACE_MOUNT_PATH=/tmp" >> BASH_ENV
+              mkdir /tmp/log
+              echo 'export WORKSPACE_MOUNT_PATH="/tmp'" >> BASH_ENV
 #       - attach_workspace:
 #           at: ${<< parameters.WKSPVAR >>}
           
       - persist_to_workspace:
           root: ${<< parameters.WKSPVAR >>}
           paths:
-            - foo/bar
-            - baz
+            - log
 
 workflows:
   # Name the workflow "welcome"
