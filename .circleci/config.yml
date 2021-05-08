@@ -13,7 +13,7 @@ jobs:
           name: Setting workspace path variable
           command: |
               mkdir /tmp/log
-              echo 'export WORKSPACE_MOUNT_PATH="/tmp"' >> BASH_ENV
+              echo 'export WORKSPACE_MOUNT_PATH="/tmp"' >> $BASH_ENV
               source $BASH_ENV
               echo ${<< parameters.WKSPVAR >>}
       
