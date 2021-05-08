@@ -14,11 +14,12 @@ jobs:
           command: |
               mkdir /tmp/log
               echo 'export WORKSPACE_MOUNT_PATH="/tmp"' >> BASH_ENV
+              echo ${<< parameters.WKSPVAR >>}
 #       - attach_workspace:
 #           at: ${<< parameters.WKSPVAR >>}
           
       - persist_to_workspace:
-          root: ${<< parameters.WKSPVAR >>}
+          root: /tmp
           paths:
             - log
 
