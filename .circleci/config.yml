@@ -4,7 +4,7 @@ jobs:
   variable:
     parameters:
       WKSPVAR:
-        type: env_var_nam
+        type: env_var_name
         default: WORKSPACE_MOUNT_PATH
     docker:
       - image: circleci/node
