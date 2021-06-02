@@ -19,8 +19,9 @@ jobs:
               darwin)
                 osID=macos
                 ;;
-              "msys_nt"*)
+              msys_nt*)
                 osID=windows
+                ;;
               *)
                 echo "Unsupported operating system."
                 exit 1
