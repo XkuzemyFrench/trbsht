@@ -9,8 +9,27 @@ jobs:
       name: win/default
       shell: bash.exe
     steps:
-      - run: uname -s | tr '[:upper:]' '[:lower:]'
+      - run:
+          command: |
+            family=$(uname -s | tr '[:upper:]' '[:lower:]')
+            case $family in
+              linux)
+                osID=$(grep -e "^ID=" /etc/os-release | cut -c4-)
+                ;;
+              darwin)
+                osID=macos
+                ;;
+              msys_nt*)
+                osID=windows
+              *)
+                echo "Unsupported operating system."
+                exit 1
+                ;;
+            esac
 
+            echo "export OSD_ID=$(echo $osID)" >> $BASH_ENV
+
+      - run: echo "OS is $OSD_ID"
 workflows:
   whatos:
     jobs:
