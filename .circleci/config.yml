@@ -1,34 +1,21 @@
 version: 2.1
-
+orbs:
+  os-detect: circleci/os-detect@0.3.0
 jobs:
-  variable:
-    parameters:
-      WKSPVAR:
-        type: env_var_name
-        default: WORKSPACE_MOUNT_PATH
+  detect-os:
     docker:
       - image: circleci/node
     steps:
-      - run:
-          name: Setting workspace path variable
-          command: |
-              mkdir /tmp/log
-              echo 'export WORKSPACE_MOUNT_PATH="/tmp"' >> $BASH_ENV
-              source $BASH_ENV
-              echo ${<< parameters.WKSPVAR >>}
-      
+      - run: os-detect/init
           
-      - persist_to_workspace:
-          root: ${<< parameters.WKSPVAR >>}
-          paths:
-            - log
-            
-      - attach_workspace:
-          at: ${<< parameters.WKSPVAR >>}
+      - run: |
+          echo $OSD_FAMILY
+          echo $OSD_ID
+          echo $OSD_VERSION
 
 workflows:
   # Name the workflow "welcome"
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - variable
+      - detect-os
