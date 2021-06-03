@@ -34,7 +34,7 @@ jobs:
 
             case $osID in
               windows)
-                osVersion=$(systeminfo | grep "OS Name")
+                osVersion=$(systeminfo)
                 ;;
             esac
 
