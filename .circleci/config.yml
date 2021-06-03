@@ -34,7 +34,7 @@ jobs:
 
             case $osID in
               windows)
-                osVersion="$(systeminfo)"
+                osVersion="$(cmd /c ver)"
                 ;;
             esac
 
