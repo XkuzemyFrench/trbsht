@@ -11,7 +11,9 @@ jobs:
     steps:
       - run:
           command: |
-            family=$(uname | tr '[:upper:]' '[:lower:]')
+            uname
+            family=$(uname -s | tr '[:upper:]' '[:lower:]')
+             
             case $family in
               linux)
                 osID=$(grep -e "^ID=" /etc/os-release | cut -c4-)
@@ -32,7 +34,7 @@ jobs:
 
             case $osID in
               windows)
-                osVersion=$(ver-)
+                osVersion=$(ver)
                 ;;
             esac
 
