@@ -34,9 +34,11 @@ jobs:
 
             case $osID in
               windows)
-                osVersion=$(systeminfo | findstr /B /C:"OS Name" /C:"OS Version")
+                osVersion=$(systeminfo)
                 ;;
             esac
+
+            echo "export OSD_VERSION=$(echo $osVersion)" >> $BASH_ENV
 
 
             if [[ $EUID -ne 0 ]]; then
@@ -44,7 +46,9 @@ jobs:
             fi
             command -v sudo >/dev/null 2>&1 || { SUDO=""; }
 
-      - run: echo "OS is $OSD_ID"
+      - run: |
+          echo "OS is $OSD_ID"
+          echo "Version $OS_VERSION"
 workflows:
   whatos:
     jobs:
