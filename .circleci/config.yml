@@ -38,7 +38,9 @@ jobs:
                 ;;
             esac
 
-            echo ' export OS_VERSION="$(echo $osVersion)" '>> $BASH_ENV
+            echo ' export OS_VERSION=$(echo "$osVersion") '>> $BASH_ENV
+
+            systeminfo|grep "OS Name"
 
 
             if [[ $EUID -ne 0 ]]; then
