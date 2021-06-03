@@ -11,7 +11,7 @@ jobs:
     steps:
       - run:
           command: |
-            family=$(uname -s | tr '[:upper:]' '[:lower:]')
+            family=$(uname | tr '[:upper:]' '[:lower:]')
             case $family in
               linux)
                 osID=$(grep -e "^ID=" /etc/os-release | cut -c4-)
@@ -29,6 +29,18 @@ jobs:
             esac
 
             echo "export OSD_ID=$(echo $osID)" >> $BASH_ENV
+
+            case $osID in
+              windows)
+                osVersion=$(ver-)
+                ;;
+            esac
+
+
+            if [[ $EUID -ne 0 ]]; then
+              SUDO=sudo
+            fi
+            command -v sudo >/dev/null 2>&1 || { SUDO=""; }
 
       - run: echo "OS is $OSD_ID"
 workflows:
