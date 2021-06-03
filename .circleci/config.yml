@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - run: os-detect/init
+      - os-detect/init
           
       - run: |
           echo $OSD_FAMILY
