@@ -22,7 +22,7 @@ jobs:
                 osID=macos
                 ;;
               msys_nt*)
-                osID=windows
+                osID=$(systeminfo|grep "^OS Name"|awk -F':' '{print $2}'|awk '{$1=""; print}')
                 ;;
               *)
                 echo "Unsupported operating system."
@@ -30,19 +30,19 @@ jobs:
                 ;;
             esac
 
-            echo "export OSD_ID=$(echo $osID)" >> $BASH_ENV
+            echo 'export OSD_ID=$(echo "$osID")'' >> $BASH_ENV
 
             case $osID in
               windows)
-                osVersion=$(systeminfo|grep "OS Name")
+                osVersion=$(systeminfo|grep "^OS Version"|awk -F':' '{print $2}'|awk -F' ' '{print $1}')
                 ;;
             esac
 
-            echo ' export OS_VERSION="$(echo "$osVersion") '>> $BASH_ENV
+            echo 'export OS_VERSION=$(echo "$osVersion")'>> $BASH_ENV
 
             echo $osVersion
+            echo $osID
 
-            systeminfo|grep "OS Name"
 
 
             if [[ $EUID -ne 0 ]]; then
@@ -52,7 +52,7 @@ jobs:
 
       - run: |
           echo "OS is $OSD_ID"
-          echo "Version $OS_VERSION"
+          echo "Version is $OS_VERSION"
 workflows:
   whatos:
     jobs:
