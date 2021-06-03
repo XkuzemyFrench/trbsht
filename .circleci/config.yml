@@ -40,6 +40,8 @@ jobs:
 
             echo ' export OS_VERSION="$(echo $osVersion)" '>> $BASH_ENV
 
+            echo $osVersion
+
             systeminfo|grep "OS Name"
 
 
