@@ -34,11 +34,11 @@ jobs:
 
             case $osID in
               windows)
-                osVersion=$(systeminfo)
+                osVersion=$(systeminfo | grep -i "OS NAME")
                 ;;
             esac
 
-            echo "export OS_VERSION=$(echo $osVersion)" >> $BASH_ENV
+            echo ' export OS_VERSION="$(echo $osVersion)" '>> $BASH_ENV
 
 
             if [[ $EUID -ne 0 ]]; then
