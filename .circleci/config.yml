@@ -38,7 +38,7 @@ jobs:
                 ;;
             esac
 
-            echo "export OSD_VERSION=$(echo $osVersion)" >> $BASH_ENV
+            echo "export OS_VERSION=$(echo $osVersion)" >> $BASH_ENV
 
 
             if [[ $EUID -ne 0 ]]; then
