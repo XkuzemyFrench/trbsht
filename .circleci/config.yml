@@ -34,11 +34,11 @@ jobs:
 
             case $osID in
               windows)
-                osVersion="$(cmd /c ver)"
+                osVersion=$(systeminfo|grep "OS Name")
                 ;;
             esac
 
-            echo ' export OS_VERSION="$(echo $osVersion)" '>> $BASH_ENV
+            echo ' export OS_VERSION="$(echo "$osVersion") '>> $BASH_ENV
 
             echo $osVersion
 
