@@ -34,7 +34,7 @@ jobs:
 
             case $osID in
               windows)
-                osVersion=$(ver)
+                osVersion=$(systeminfo | findstr /B /C:"OS Name" /C:"OS Version")
                 ;;
             esac
 
