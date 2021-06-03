@@ -1,21 +1,60 @@
 version: 2.1
-orbs:
-  os-detect: circleci/os-detect@0.3.0
+
 jobs:
-  detect-os:
+  build:
     docker:
       - image: circleci/node
     steps:
-      - os-detect/init
-          
+      - run:
+          shell: bash.exe
+          command: |
+            uname
+            family=$(uname -s | tr '[:upper:]' '[:lower:]')
+             
+            case $family in
+              linux)
+                osID=$(grep -e "^ID=" /etc/os-release | cut -c4-)
+                ;;
+              darwin)
+                osID=macos
+                ;;
+              msys_nt*)
+                osID=$(systeminfo|grep "^OS Name"|awk -F':' '{print $2}'|awk '{$1=""; print}')
+                ;;
+              *)
+                echo "Unsupported operating system."
+                exit 1
+                ;;
+            esac
+
+            case $osID in
+              *Windows*)
+                osVersion=$(systeminfo|grep "^OS Version"|awk -F':' '{print $2}'|awk -F' ' '{print $1}')
+                ;;
+            esac
+            
+
+            echo $osVersion
+            echo $osID
+
+
+
+            if [[ $EUID -ne 0 ]]; then
+              SUDO=sudo
+            fi
+            command -v sudo >/dev/null 2>&1 || { SUDO=""; }
+
+            echo "export OSD_FAMILY=$(echo $family)" >> $BASH_ENV
+            echo "export OSD_ID=$(printf %s${osID})" >> $BASH_ENV
+            echo "export OSD_VERSION=$(echo $osVersion)" >> $BASH_ENV
+            echo "export SUDO=$(echo $SUDO)" >> $BASH_ENV
+
       - run: |
           echo $OSD_FAMILY
           echo $OSD_ID
           echo $OSD_VERSION
 
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  whatos:
     jobs:
-      - detect-os
+      - build
