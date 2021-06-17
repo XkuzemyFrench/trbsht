@@ -1,33 +1,14 @@
 version: 2.1
-
+orbs:
+  azure-cli: circleci/azure-cli@1.2.0
 jobs:
-  run-endpoint-ondemand-test:
+  test-azure-cli-install:
     docker:
       - image: circleci/node
     steps:
-      - run:
-          command: |
-                   echo $CIRCLE_PROJECT_USERNAME
-
-  run-endpoint-test:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo "run-endpoint-test
-                   
-workflows:
-#  on_demand:
-#    jobs:
-#      - run-endpoint-ondemand-test:
-#          type: approval
-#          filters:
-#            branches:
-#              only:
-#                - master
+      - azure-cli/install
                 
   endpointTest:
     jobs:
-      - run-endpoint-ondemand-test
+      - test-azure-cli-install
   
