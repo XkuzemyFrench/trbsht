@@ -7,8 +7,9 @@ jobs:
       - image: circleci/node
     steps:
       - azure-cli/install
-                
-  endpointTest:
+
+workflows:                
+  clitest:
     jobs:
       - test-azure-cli-install
   
