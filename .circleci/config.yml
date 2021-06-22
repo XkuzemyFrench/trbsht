@@ -23,7 +23,7 @@ jobs:
       
       - run:
           command: |
-            which curl
+            sudo which curl
 
 workflows:
   whatos:
