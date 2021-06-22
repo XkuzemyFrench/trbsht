@@ -20,13 +20,14 @@ jobs:
           
       - run: |
           ls -al /usr/bin/c*
-          ls -al /usr/bin
+          ls -ald /usr/bin
           whoami
       - run: echo $PATH
       
       - run:
           command: |
             which curl
+            which which
 
 workflows:
   whatos:
