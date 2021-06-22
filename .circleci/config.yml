@@ -26,7 +26,7 @@ jobs:
       
       - run:
           command: |
-            which curl
+            which busybox
             which which
 
 workflows:
