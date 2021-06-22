@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
+      - run: echo $PATH
     
       - run:
           name: install curl
@@ -12,6 +13,9 @@ jobs:
       - run:
           name: install which
           command: apk add which  
+          
+      - run: echo $PATH
+      
       - run:
           command: |
             which curl
