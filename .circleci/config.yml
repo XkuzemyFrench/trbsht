@@ -8,9 +8,7 @@ jobs:
 
     docker:
       - image: alpine:latest
-    steps:
-      - run: which -v
-    
+    steps:    
       - run:
           name: install curl
           command: apk add curl py-pip git bash  wget
@@ -22,12 +20,10 @@ jobs:
           ls -al /usr/bin/c*
           ls -ald /usr/bin
           whoami
-      - run: which -v
       
       - run:
           command: |
-            which chardetect
-            which which
+            ls -al /usr/bin/wh*
 
 workflows:
   whatos:
