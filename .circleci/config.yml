@@ -9,7 +9,7 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
-      - run: echo $PATH
+      - run: which -v
     
       - run:
           name: install curl
@@ -22,7 +22,7 @@ jobs:
           ls -al /usr/bin/c*
           ls -ald /usr/bin
           whoami
-      - run: echo $PATH
+      - run: which -v
       
       - run:
           command: |
