@@ -12,9 +12,9 @@ jobs:
       - run:
           name: install curl
           command: apk add curl py-pip git bash  wget
-      - run:
-          name: install which
-          command: apk add which  
+#       - run:
+#           name: install which
+#           command: apk add which  
           
       - run: |
           ls -al /usr/bin/c*
