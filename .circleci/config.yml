@@ -11,9 +11,9 @@ jobs:
     steps:
       - run: echo $PATH
     
-      - run:
-          name: install curl
-          command: apk add curl py-pip git bash  wget
+#       - run:
+#           name: install curl
+#           command: apk add curl py-pip git bash  wget
 #       - run:
 #           name: install which
 #           command: apk add which  
