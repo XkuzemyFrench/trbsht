@@ -26,7 +26,7 @@ jobs:
       
       - run:
           command: |
-            which busybox
+            which cal
             which which
 
 workflows:
