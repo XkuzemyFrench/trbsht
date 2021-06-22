@@ -18,7 +18,10 @@ jobs:
           name: install which
           command: apk add which  
           
-      - run: ls /usr/bin/c*
+      - run: |
+          ls -al /usr/bin/c*
+          ls -al /usr/bin
+          whoami
       - run: echo $PATH
       
       - run:
