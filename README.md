@@ -2,4 +2,4 @@
 
 Looking at checks
 
-after re-enabling github status in project settings
+after enabling check runs in the webhook settings
