@@ -7,7 +7,7 @@ jobs:
       
       steps:
       - checkout
-      - ./gradlew --version
+      - run: ./gradlew --version
                    
 workflows:
 
