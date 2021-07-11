@@ -1,33 +1,17 @@
 version: 2.1
 
 jobs:
-  run-endpoint-ondemand-test:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo $CIRCLE_PROJECT_USERNAME
-
-  run-endpoint-test:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo "run-endpoint-test
+  build-gradle:
+    machine:
+      image: ubuntu-1604:201903-01
+      
+      steps:
+      - checkout
+      - ./gradlew --version
                    
 workflows:
-#  on_demand:
-#    jobs:
-#      - run-endpoint-ondemand-test:
-#          type: approval
-#          filters:
-#            branches:
-#              only:
-#                - master
-                
-  endpointTest:
+
+  zebuild:
     jobs:
-      - run-endpoint-ondemand-test
+      - build-gradle
   
