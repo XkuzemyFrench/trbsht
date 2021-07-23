@@ -6,10 +6,10 @@ orbs:
 jobs:
   lecli:
     docker:
-      - image:  circleci/node:14
+      - image:  circleci/node:12
     steps:
       - aws-cli/install:
-          version: 2
+          version: "2"
           
 
                    
