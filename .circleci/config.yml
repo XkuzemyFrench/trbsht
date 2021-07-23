@@ -9,7 +9,7 @@ jobs:
       - image:  circleci/node:14
     steps:
       - aws-cli/install:
-          version: "2"
+          version: 2
           
 
                    
