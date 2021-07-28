@@ -16,6 +16,7 @@ jobs:
       - run:
           command: |
                    echo "This is job 2"
+                   sleep 20
                    
   job-3:
     docker:
