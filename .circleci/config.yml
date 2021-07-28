@@ -39,9 +39,10 @@ workflows:
             
       - request-deploy:
           type: approval
+          requires:
+            - job-2
           
       - job-3:
           requires:
-            - job-2
             - request-deploy
           context: daily-deployments
