@@ -1,33 +1,46 @@
 version: 2.1
 
 jobs:
-  run-endpoint-ondemand-test:
+  job-1:
     docker:
       - image: circleci/node
     steps:
       - run:
           command: |
-                   echo $CIRCLE_PROJECT_USERNAME
+                   echo "This is job 1"
 
-  run-endpoint-test:
+  job-2:
     docker:
       - image: circleci/node
     steps:
       - run:
           command: |
-                   echo "run-endpoint-test
+                   echo "This is job 2"
+                   
+  job-3:
+    docker:
+      - image: circleci/node
+    steps:
+      - run:
+          command: |
+                   echo "This is job 3"
+                   
+                   
                    
 workflows:
-#  on_demand:
-#    jobs:
-#      - run-endpoint-ondemand-test:
-#          type: approval
-#          filters:
-#            branches:
-#              only:
-#                - master
-                
-  endpointTest:
+
+  whodidthis:
     jobs:
-      - run-endpoint-ondemand-test
-  
+      - job-1
+      - job-2:
+          requires:
+            - job-1
+            
+      - request-deploy:
+          type: approval
+          
+      - job-3:
+          requires:
+            - job-2
+            - request-deploy
+          context: daily-deployments
