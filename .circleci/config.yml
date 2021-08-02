@@ -7,42 +7,12 @@ jobs:
     steps:
       - run:
           command: |
-                   echo "This is job 1"
-
-  job-2:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo "This is job 2"
-                   sleep 20
-                   
-  job-3:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo "This is job 3"
-                   
-                   
+                   git clone --branch shallow --single-branch --depth 1 https://github.com/XkuzemyFrench/trbsht.git .
+                   git fetch --depth=1 --force origin "shallow:remotes/origin/shallow"
+                   git checkout -q -B shallow
                    
 workflows:
 
   whodidthis:
     jobs:
       - job-1
-      - job-2:
-          requires:
-            - job-1
-            
-      - request-deploy:
-          type: approval
-          requires:
-            - job-2
-          
-      - job-3:
-          requires:
-            - request-deploy
-          context: daily-deployments
