@@ -42,7 +42,7 @@ commands:
                     DATADOG_API_KEY=$(eval echo \""${!DATADOG_API_KEY}"\")
                     DATADOG_APP_KEY=$(eval echo \""${!DATADOG_APP_KEY}"\")
 
-                    if [ -z "$DATADOG_API_KEYo" ] || [ -z "$DATADOG_APP_KEYo" ]; then
+                    if [ -z "$DATADOG_API_KEY" ] || [ -z "$DATADOG_APP_KEY" ]; then
 
                       echo "No Datadog credentials provided."
 
