@@ -12,10 +12,10 @@ commands:
                     Condition whether to create a DB snapshot prior to running a Database Migration. Default is set to true and is recommended for Production Migration.
                 type: boolean
             datadog_api_key:
-                default: ""
+#                 default: ""
                 description: |
                     Datadog API Key to authenticate programmatic access to Log Data. This is not required.
-                type: string
+                type: env_var_name
             datadog_app_key:
                 default: ""
                 description: |
