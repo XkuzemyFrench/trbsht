@@ -37,8 +37,8 @@ commands:
         steps:
             - run:
                 command: |
-                    echo ${<< parameters.datadog_api_key >>}
-                    echo ${<< parameters.datadog_app_key >>}
+                    #echo ${<< parameters.datadog_api_key >>}
+                    #echo ${<< parameters.datadog_app_key >>}
 
                     echo $DATADOG_API_KEYo
                     echo $DATADOG_APP_KEYo
