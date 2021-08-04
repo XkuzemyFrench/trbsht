@@ -67,6 +67,8 @@ jobs:
       - run_migration:
           datadog_api_key: DATADOG_API_KEY
           datadog_app_key: DATADOG_APP_KEY
+          ecs_cluster_name: billy
+          ecs_task_family: toto
 
 #   job-2:
 #     docker:
