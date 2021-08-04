@@ -12,10 +12,10 @@ commands:
                     Condition whether to create a DB snapshot prior to running a Database Migration. Default is set to true and is recommended for Production Migration.
                 type: boolean
             datadog_api_key:
-#                 default: ""
+                default: ""
                 description: |
                     Datadog API Key to authenticate programmatic access to Log Data. This is not required.
-                type: env_var_name
+                type: string
             datadog_app_key:
                 default: ""
                 description: |
@@ -36,28 +36,14 @@ commands:
                 type: string
         steps:
             - run:
-                command: |
-                    #echo ${<< parameters.datadog_api_key >>}
-                    #echo ${<< parameters.datadog_app_key >>}
-
-                    echo $DATADOG_API_KEYo
-                    echo $DATADOG_APP_KEYo
-                    
-                    echo ${!DATADOG_API_KEYo}
-                    echo ${!DATADOG_APP_KEYo}
-                   
+                command: |              
                     set -o noglob
-                    MIGRATION_TASK_ARN=$(eval echo \""$MIGRATION_TASK_ARN"\")
-                    DATADOG_API_KEY=$(eval echo "${!DATADOG_API_KEYo}")
-                    DATADOG_APP_KEY=$(eval echo "${!DATADOG_APP_KEYo}")
+                    MIGRATION_TASK_ARN=$(eval echo "$MIGRATION_TASK_ARN")
+                    DATADOG_API_KEY=$(eval echo "${!DATADOG_API_KEY_ENV}")
+                    DATADOG_APP_KEY=$(eval echo "${!DATADOG_APP_KEY_ENV}")
                     
-                    echo $DATADOG_API_KEYo
-                    echo $DATADOG_APP_KEYo
                     
-                    echo ${!DATADOG_API_KEYo}
-                    echo ${!DATADOG_APP_KEYo}
-                    
-                    if [ -z "$DATADOG_API_KEYo" ] || [ -z "$DATADOG_APP_KEYo" ]; then
+                    if [ -z "$DATADOG_API_KEY" ] || [ -z "$DATADOG_APP_KEY" ]; then
 
                       echo "No Datadog credentials provided."
 
@@ -69,8 +55,8 @@ commands:
                         --data-raw '{"filter": {"from": "now-15m", "to": "now", "query": "'"task_arn: ${MIGRATION_TASK_ARN}"'"}}' | jq
                     fi
                 environment:
-                    DATADOG_API_KEYo: << parameters.datadog_api_key >>
-                    DATADOG_APP_KEYo: << parameters.datadog_app_key >>
+                    DATADOG_API_KEY_ENV: << parameters.datadog_api_key >>
+                    DATADOG_APP_KEY_ENV: << parameters.datadog_app_key >>
                 name: Get Datadog logs
                 
 jobs:
