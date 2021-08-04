@@ -37,10 +37,22 @@ commands:
         steps:
             - run:
                 command: |
+                    echo $DATADOG_API_KEY
+                    echo $DATADOG_APP_KEY
+                    
+                    echo ${!DATADOG_API_KEY}
+                    echo ${!DATADOG_APP_KEY}
+                    
                     set -o noglob
                     MIGRATION_TASK_ARN=$(eval echo \""$MIGRATION_TASK_ARN"\")
                     DATADOG_API_KEY=$(eval echo \""${!DATADOG_API_KEY}"\")
                     DATADOG_APP_KEY=$(eval echo \""${!DATADOG_APP_KEY}"\")
+                    
+                    echo $DATADOG_API_KEY
+                    echo $DATADOG_APP_KEY
+                    
+                    echo ${!DATADOG_API_KEY}
+                    echo ${!DATADOG_APP_KEY}
 
                     if [ -z "$DATADOG_API_KEY" ] || [ -z "$DATADOG_APP_KEY" ]; then
 
@@ -64,8 +76,8 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run_migration:
-          datadog_api_key: DATADOG_API_KEY
-          datadog_app_key: DATADOG_APP_KEY
+          datadog_api_key: $DATADOG_API_KEY
+          datadog_app_key: $DATADOG_APP_KEY
           ecs_cluster_name: leclus
           ecs_task_family: tavu
 
