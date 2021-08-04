@@ -49,14 +49,13 @@ commands:
                     else
                       curl -v -L -X POST "https://enf81151xturj.x.pipedream.net" \
                         --header "Content-Type: application/json" \
-                        --header "DD-API-KEY: ${DATADOG_API_KEY}" \
-                        --header "DD-APPLICATION-KEY: ${DATADOG_APP_KEY}" \
+                        --header "DD-API-KEY: $DATADOG_API_KEY" \
+                        --header "DD-APPLICATION-KEY: $DATADOG_APP_KEY" \
                         --data-raw '{"filter": {"from": "now-15m", "to": "now", "query": "'"task_arn: ${MIGRATION_TASK_ARN}"'"}}' | jq
                     fi
                 environment:
                     DATADOG_API_KEY: << parameters.datadog_api_key >>
                     DATADOG_APP_KEY: << parameters.datadog_app_key >>
-                    MIGRATION_TASK_ARN: $MIGRATION_TASK_ARN
                 name: Get Datadog logs
                 
 jobs:
